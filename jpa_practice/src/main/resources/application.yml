@@ -1,0 +1,68 @@
+server:
+  port: 8085
+
+spring:
+  profiles:
+    active: default
+    group:
+      dev:
+        - dev
+      real:
+        - real
+  main:
+    banner-mode: log
+    allow-bean-definition-overriding: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        show-sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+  datasource:
+    url: jdbc:mysql://localhost:3306/jpa_practice?useSSL=false&serverTimezone=UTC&autoReconnect=true
+    username: admin
+    password: admin1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+security:
+  jwt:
+    token: eyJhbGciOiJIUzI1NiJ9.eyJNIjoiQmVhcmVyIiwiSSI6ImlpRDFOQXhqVGx1d1JpRURXSlRZcHciLCJTIjoiUjFYNk9NOG1SNG16YzVZZ0VTQk9zQSIsIlIiOjE2MzgzLCJpYXQiOjE3MjQ2NjA4NzksImV4cCI6MjY3MDc0MDg3OX0.Z5uzekYOVkrV_RcHUwHpP7Rftg3I9wZ3gI-aGTiTW-Y
+    secret-key: 0ceUBJRHtko7pPCNnZCQN1RvJJAHGtfDSjdNhdCIXIzFnEnTBUkPzzOkv0mcq5AfA4lCYvSIbLHxDe6xIjj5EGk7K
+    token-type: Bearer
+    header-string: Authorization
+    access-token-expiration: 300000
+    refresh-token-expiration: 1800000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+      base-path: /monitor
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 200MB
+      max-file-size: 200MB
+      max-request-size: 400MB
+
+jasypt:
+  encryptor:
+    bean: jasyptEnc
+    prefix: ENC(
+    suffix: )
+
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari: DEBUG
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+

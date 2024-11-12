@@ -45,16 +45,13 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
 
     // DB
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:${hibernate5Version}"
     runtimeOnly "mysql:mysql-connector-java:${mysqlClientVersion}"
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
 
-    // Redis
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.2.4'
-    implementation group: 'org.springframework.data', name: 'spring-data-redis', version: '3.2.5'
-    implementation 'io.lettuce:lettuce-core:6.3.2.RELEASE'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.17.1'
 
@@ -154,7 +151,7 @@ jar {
 }
 
 bootJar {
-    archiveBaseName.set("kiosk-api")
+    archiveBaseName.set("jpa-practice")
     enabled = true
     launchScript()
 }
